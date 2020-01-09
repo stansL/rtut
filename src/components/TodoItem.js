@@ -14,13 +14,13 @@ class TodoItem extends Component {
 
 
     render() {
-        const {id,title} = this.props.todo
+        const { id, title } = this.props.todo
         return (
             <div style={this.getStyle()}>
                 <p>
-                    <input type="checkbox" onChange = {this.props.markComplete.bind(this,id)}/> {' '}
+                    <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} checked={this.props.todo.completed} /> {' '}
                     {title}
-                    <button style = {btnStyle} onClick = {this.props.deleteItem.bind(this,id)}>x</button>
+                    <button style={btnStyle} onClick={this.props.deleteItem.bind(this, id)}>x</button>
                 </p>
             </div>
         )
