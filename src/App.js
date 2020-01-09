@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
+
 import './App.css';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import Header from './components/layout/Header';
+import About from './components/pages/About'
 
 class App extends Component {
 
@@ -47,8 +51,8 @@ class App extends Component {
 
   addTodo = (title) => {
     this.setState({
-      todos: [...this.state.todos,{
-        id: this.state.todos.length + 1,
+      todos: [...this.state.todos, {
+        id: this.state.todos.length + 1,//not the best - possible conflicts on the id key - use a unique id generator
         title,
         completed: false
       }]
@@ -58,14 +62,22 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <Todos todos={this.state.todos} markComplete={this.markComplete} deleteItem={this.deleteItem} />
-          <AddTodo addTodo={this.addTodo} />
-        </div>
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Route exact path="/" render={props => (
+              <React.Fragment>
+                <Todos todos={this.state.todos} markComplete={this.markComplete} deleteItem={this.deleteItem} />
+                <AddTodo addTodo={this.addTodo} />
+              </React.Fragment>
+            )} />
 
-      </div>
+            <Route path="/about" component={About} />
+
+          </div>
+        </div>
+      </Router>
     );
   }
 
