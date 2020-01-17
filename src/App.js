@@ -21,7 +21,6 @@ class App extends Component {
           todo.completed = !todo.completed;
         }
         return todo;
-
       })
     });
   }
@@ -73,7 +72,7 @@ class App extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10');
-      console.log(response.data);
+      // console.log(response.data);
       this.setState({ todos: response.data })
     } catch (error) {
       console.log(error);

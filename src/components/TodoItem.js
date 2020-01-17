@@ -35,7 +35,6 @@ const btnStyle = {
     borderRadius: '50%',
     cursor: 'pointer',
     float: 'right'
-
 }
 
 TodoItem.propTypes = {
